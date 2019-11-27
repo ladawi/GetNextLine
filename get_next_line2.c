@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:05:00 by ladawi            #+#    #+#             */
-/*   Updated: 2019/11/27 16:32:04 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/11/27 18:30:19 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		get_next_line2(int fd, char **line)
 	j = 0;
 	if (!(str = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (0);
-
 	if (!(tmp = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (0);
 	tmp[BUFFER_SIZE] = 0;
@@ -38,10 +37,13 @@ int		get_next_line2(int fd, char **line)
 	{
 		tmp[j] = str[i];
 		i++;
-		printf("[tmp[j] = %c]", tmp[j]);
+		printf(" [tmp[j] = %c] ", tmp[j]);
+		printf(" [str[i] = %c] ", str[i]);
+		printf(" [str = %s] ", str);
+		printf(" [i = %d] ", i);
 		printf ("[buff == %d]\n", buff);
 		j++;
-		if (str[i] == 0)
+		if (str[i] == 0 && buff != 0)
 		{
 			if (!(buff = read(fd, str, BUFFER_SIZE)))
 			{
@@ -60,7 +62,7 @@ int		get_next_line2(int fd, char **line)
 		return (0);
 	rest = ft_substr(str, i, ft_strlen(str) - i);
 	test++;
-	if (buff == 0)
+	if (buff == 0 && str[i] == 0)
 		return (0);
 	return (1);
 }

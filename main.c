@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "get_next_line.c"
 #include "get_next_line2.c"
 #include <fcntl.h>

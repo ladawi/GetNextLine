@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:25:27 by ladawi            #+#    #+#             */
-/*   Updated: 2019/11/26 13:28:54 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/11/27 18:13:42 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static char *useread(int fd, char **line)
 		return (0);
 	if (!(string = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (0);
-	
 	if (!(buff = read(fd, string, BUFFER_SIZE)))
 		return (0);
 	string[buff] = '\0';
