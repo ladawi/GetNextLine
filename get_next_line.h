@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:22:09 by ladawi            #+#    #+#             */
-/*   Updated: 2019/11/27 15:18:46 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/11/27 18:52:59 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # endif
 
 int	get_next_line(int fd, char **line);
-int	get_next_line2(int fd, char **line);
 void	*ft_memset(void *s, int c, size_t n);
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
