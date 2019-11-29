@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:28:23 by ladawi            #+#    #+#             */
-/*   Updated: 2019/11/27 18:09:35 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/11/28 15:12:34 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlen(const char *s)
 	size_t i;
 
 	i = 0;
+	if (s == 0)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
