@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:28:23 by ladawi            #+#    #+#             */
-/*   Updated: 2019/11/28 15:12:34 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/11/30 13:13:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,23 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memset(void *s, int c, size_t n)
+int		*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i < n)
+	if (s != 0)
+		return (0);
+	while (s[i])
 	{
-		*(unsigned char*)(s + i) = (unsigned char)c;
+		if (s[i] == (char)c)
+			return (i);
 		i++;
 	}
-	return (s);
+	if (s[i] == '\0' && (char)c == '\0')
+		return (i);
+	return (-1);
+
 }
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
@@ -59,35 +65,15 @@ char	*ft_strjoin(char const *s1, char *s2)
 	size_t	len_s1;
 	size_t	len_s2;
 	
-	if (s1 == 0)
-		return (s2);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-
+	len_s1 = s1 != 0 ? ft_strlen(s1) : 0;
+	len_s2 = s2 != 0 ? ft_strlen(s2) : 0;
 	if (!(str = (char*)malloc(len_s1 + len_s2 + 1)))
 		return (0);
-	ft_memcpy(str, s1, len_s1);
-	ft_memcpy(str + ft_strlen(s1), s2, len_s2 + 1);
+	if (s1 != 0)
+		ft_memcpy(str, s1, len_s1 + 1);
+	if (s2 != 0)
+		ft_memcpy(str + len_s1, s2, len_s2 + 1);
 	return (str);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	if (size == 0)
-		return (ft_strlen(src));
-	if (ft_strlen(src) == size)
-	{
-		ft_memcpy(dst, src, size);
-		dst[size - 1] = '\0';
-	}
-	if (ft_strlen(src) < size)
-		ft_memcpy(dst, src, ft_strlen(src) + 1);
-	if (ft_strlen(src) > size)
-	{
-		ft_memcpy(dst, src, size - 1);
-		dst[size - 1] = '\0';
-	}
-	return (ft_strlen(src));
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -98,9 +84,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
 		return (0);
-	ft_memset(str, 0, len + 1);
 	if (start > ft_strlen(s))
 		return (str);
-	ft_strlcpy(str, s + start, len + 1);
+	if (start + len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	ft_memcpy(str, s + start, len);
+	str[len] = '\0';
 	return (str);
 }
