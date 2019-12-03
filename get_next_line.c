@@ -6,12 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:05:00 by ladawi            #+#    #+#             */
-/*   Updated: 2019/12/02 13:50:09 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/12/03 22:20:29 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int		read_file(int fd, char **rest)
 {
@@ -42,13 +41,13 @@ int		read_file(int fd, char **rest)
 	return (buff > 0 ? 1 : buff);
 }
 
-int		stock_rest(int fd, char **line, char **rest)
+int		stock_rest(int fd, char **rest, char **line)
 {
 	char	*to_free;
 	int		error;
 	int		len;
-	
-	if (!line)
+
+	if (!(line))
 		return (-1);
 	if ((error = read_file(fd, rest)) < 0)
 		return (-1);
@@ -57,7 +56,7 @@ int		stock_rest(int fd, char **line, char **rest)
 	if (!(*line = ft_substr(*rest, 0, len)))
 		return (-1);
 	to_free = *rest;
-	*rest = ft_substr(*rest, len + 1, ft_strlen((*rest) + len + 1));
+	*rest = ft_substr(*rest, len + 1, ft_strlen(*rest) + len + 1);
 	if (to_free)
 	{
 		free(to_free);
@@ -68,16 +67,11 @@ int		stock_rest(int fd, char **line, char **rest)
 
 int		get_next_line(int fd, char **line)
 {
-	static char *rest;
-	int			error;
+	char	static	*rest[4096];
+	int				error;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	error = stock_rest(fd, line, &rest);
-	if (rest && (error == 0 || error == -1))
-	{
-		free(rest);
-		rest = NULL;
-	}
+	error = stock_rest(fd, &rest[fd], line);
 	return (error);
 }

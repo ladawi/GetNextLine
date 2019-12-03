@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:28:23 by ladawi            #+#    #+#             */
-/*   Updated: 2019/12/02 13:49:53 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/12/03 22:29:54 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*ft_strjoin(char const *s1, char *s2)
 	ft_memcpy(str + ft_strlen(s1), s2, len_s2 + 1);
 	return (str);
 }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
