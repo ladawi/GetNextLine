@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnlnico.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:36 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/10/26 17:55:07 by nieyraud         ###   ########.fr       */
+/*   Updated: 2019/12/02 12:15:59 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
 	error = stock_line(fd, line, &stock);
-	if (stock && (error == -1 || error == 0))
+	if (stock && (error == 0 || error == -1))
 	{
 		free(stock);
 		stock = NULL;

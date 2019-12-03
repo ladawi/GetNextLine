@@ -6,11 +6,12 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:05:00 by ladawi            #+#    #+#             */
-/*   Updated: 2019/12/02 13:50:09 by ladawi           ###   ########.fr       */
+/*   Updated: 2019/12/02 02:43:17 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 #include <stdio.h>
 
 int		read_file(int fd, char **rest)
@@ -48,13 +49,13 @@ int		stock_rest(int fd, char **line, char **rest)
 	int		error;
 	int		len;
 	
-	if (!line)
+	if (!(line))
 		return (-1);
-	if ((error = read_file(fd, rest)) < 0)
+	if ((error = read_file(fd, rest) < 0))
 		return (-1);
 	len = ft_strchr(*rest, '\n');
 	len == -1 ? len = ft_strlen(*rest) : len;
-	if (!(*line = ft_substr(*rest, 0, len)))
+	if ((*line = ft_substr(*rest, 0, len)))
 		return (-1);
 	to_free = *rest;
 	*rest = ft_substr(*rest, len + 1, ft_strlen((*rest) + len + 1));
@@ -68,10 +69,10 @@ int		stock_rest(int fd, char **line, char **rest)
 
 int		get_next_line(int fd, char **line)
 {
-	static char *rest;
+	static char *rest = NULL;
 	int			error;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (-1);
 	error = stock_rest(fd, line, &rest);
 	if (rest && (error == 0 || error == -1))
